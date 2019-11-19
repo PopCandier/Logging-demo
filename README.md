@@ -121,5 +121,10 @@
 
 `TRACE` < `DEBUG` < `INFO` < `WARN` < `ERROR` < `FATAL`。
 
+如果设置为 `WARN` ，则低于 `WARN` 的信息都不会输出。
+ `Spring Boot`中默认配置`ERROR`、`WARN`和`INFO`级别的日志输出到控制台。还可以通过启动应用程序 `--debug` 标志来启用“调试”模式（开发的时候推荐开启）,以下两种方式皆可：
 
+* 运行命令后加入 `--debug`，如：`$ java -jar xxxx.jar --debug`
+* 在 `application.properties`中配置 `debug=true`，如果该属性为`true`，核心`logger`（包括嵌入式容器，hibernate，spring）会输出更多内容，但是**你自己应用日志，并不会输出为`debug`级别。**
+* 
 
