@@ -556,3 +556,41 @@ public class HelloController {
 ![1574244969878](./img/1574244969878.png)
 
 相同范围进行叠加，范围小的有效。
+
+
+
+#### 指定 profile 进行日志打印
+
+```xml
+<springProfile name="dev">
+        <logger name="com.pop.logging.controller.HelloController" level="WARN" additivity="false" >
+            <appender-ref ref="consoleLog" />
+        </logger>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="com.pop.logging.controller.HelloController" level="ERROR" additivity="false" >
+            <appender-ref ref="consoleLog" />
+        </logger>
+    </springProfile>
+```
+
+当你配置成这样的时候
+
+```properties
+spring:
+    profiles:
+        active: dev
+```
+
+![1574263513897](./img/1574263513897.png)
+
+```properties
+spring:
+    profiles:
+        active: prod
+```
+
+![1574263597689](./img/1574263597689.png)
+
+可以根据配置文件的profile，也可以控制日志级别

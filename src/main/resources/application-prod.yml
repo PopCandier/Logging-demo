@@ -1,18 +1,17 @@
 
-spring:
-    profiles:
-        active: prod
+
+
 
 debug: false
-
-logging:
+#
+#logging:
 #  #  pattern:
 #   #     console: "%d - %msg%n"
 #  #  file:
 #   #     path: ./logs/
 #   #     name: ./log/my-spring.log
 #    #level: com.pop.demo: debug
-    config: classpath:logback-spring-dev.xml
+#    config: classpath:logback-spring-loger.xml
 
 server:
     port: 8080

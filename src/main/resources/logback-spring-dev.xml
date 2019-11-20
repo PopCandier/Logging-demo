@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+
+    <contextName>logback-loger</contextName>
+    <!--
+    将控制controller包下的所有类的日志的打印，但是并没用设置打印级别，所以继承他的上级的日志级别“info”；
+没有设置addtivity，默认为true，将此loger的打印信息向上级传递；
+没有设置appender，此loger本身不打印任何信息。
+<root level="info">将root的打印级别设置为“info”，指定了名字为“console”的appender。
+    -->
+    <!--<logger name="com.pop.logging.controller"/>-->
+
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <!--展示格式 layout-->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                <pattern>
+                    %d{HH:mm:ss} %contextName [%thread] %-5level %logger{36} - %msg%n
+                </pattern>
+            </pattern>
+        </layout>
+        <!--
+        ThresholdFilter为系统定义的拦截器，例如我们用ThresholdFilter来过滤掉ERROR级别以下的日志不输出到文件中。
+        如果不用记得注释掉，不然你控制台会发现没日志~
+       <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+       </filter>
+        -->
+    </appender>
+
+    <springProfile name="dev">
+        <logger name="com.pop.logging.controller.HelloController" level="WARN" additivity="false" >
+            <appender-ref ref="consoleLog" />
+        </logger>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="com.pop.logging.controller.HelloController" level="ERROR" additivity="false" >
+            <appender-ref ref="consoleLog" />
+        </logger>
+    </springProfile>
+
+    <!-- 注意 logger放置位置，如果你放在了appender上面，可能会导致回来-->
+    <!--<logger name="com.pop.logging.controller.HelloController" level="WARN" additivity="false">-->
+        <!--<appender-ref ref="consoleLog" />-->
+        <!--&lt;!&ndash;<appender-ref ref="console" />&ndash;&gt;-->
+    <!--</logger>-->
+
+    <!--
+        root 节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性
+        level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF，不能设置为INHERITED或者同义词NULL。
+        默认是DEBUG。可以包含零个或多个元素，标识这个appender将会添加到这个loger
+    -->
+    <root level="info">
+        <!--- 指定输出到控制台-->
+        <appender-ref ref="consoleLog" />
+    </root>
+</configuration>
