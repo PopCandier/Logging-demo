@@ -1,0 +1,18 @@
+#debug=true`，如果该属性为`true`，
+# 核心`logger`（包括嵌入式容器，hibernate，spring）
+# 会输出更多内容，但是**你自己应用日志，并不会输出为`debug`级别
+
+
+debug: false
+# 控制台，只输出 日期和内容
+logging:
+  #  pattern:
+   #     console: "%d - %msg%n"
+  #  file:
+   #     path: ./logs/
+   #     name: ./log/my-spring.log
+    #level: com.pop.demo: debug
+    config: classpath:logback-spring-loger.xml
+
+server:
+    port: 8080

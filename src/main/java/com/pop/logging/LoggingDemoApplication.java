@@ -10,7 +10,6 @@ public class LoggingDemoApplication {
 
     public static void main(String[] args) throws IOException {
         SpringApplication.run(LoggingDemoApplication.class, args);
-        System.in.read();
     }
 
 }
